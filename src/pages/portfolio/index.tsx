@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { AiFillGithub } from 'react-icons/ai'
 import { FaLocationArrow } from 'react-icons/fa'
 import { Header } from '../../components/Header'
-import { Badge } from './components/Badge'
+import { Badge } from '../../components/Badge'
 import { PortfolioContainer, Cards, Card } from './styles'
 
 interface dataInterface {
