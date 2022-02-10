@@ -7,7 +7,7 @@ import { FaBars } from 'react-icons/fa';
 import { Offcanvas } from 'react-bootstrap';
 import Link from 'next/link'
 
-export const Header: React.FC = () => {
+export const Header = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

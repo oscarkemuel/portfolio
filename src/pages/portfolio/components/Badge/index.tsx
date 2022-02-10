@@ -7,7 +7,7 @@ export interface BadgeProps {
   language: string;
 }
 
-export const Badge: React.FC<BadgeProps> = ({ language }: BadgeProps) => {
+export const Badge = ({ language }: BadgeProps) => {
   return (
     <Container language={language}>
       {language === 'JavaScript' && <FaJs />}
