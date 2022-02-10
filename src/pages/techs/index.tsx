@@ -26,7 +26,7 @@ const Techs: NextPage = () => {
             <p className="title">Html5</p>
 
             <ul>
-              <li>CEO</li>
+              <li>SEO</li>
               <li>Tags</li>
               <li>Atributos</li>
             </ul>
