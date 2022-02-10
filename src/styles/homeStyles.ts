@@ -62,8 +62,8 @@ export const Home = styled.section`
   }
 
   @media(max-width: 890px){
-    padding: 100px 2rem;
-    height: 130vh;
+    padding: 90px 2rem;
+    height: 125vh;
   }
 `;
 

@@ -13,11 +13,9 @@ export const TechsContainer = styled.section`
   padding-top: 140px !important;
   width: 100%;
   padding: 100px 4rem;
-  margin-bottom: 1rem;
 
   @media(max-width: 890px){
     padding: 100px 2rem;
-    height: 130vh;
   }
 `;
 
