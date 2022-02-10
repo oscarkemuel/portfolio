@@ -2,7 +2,7 @@
 import type { NextPage, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { Header } from '../components/Header'
-import { Home, Card } from './styles'
+import { Home, Card } from '../styles/homeStyles'
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
 
 interface Props {

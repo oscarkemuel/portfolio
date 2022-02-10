@@ -4,7 +4,7 @@ import { AiFillAndroid } from 'react-icons/ai'
 import { FaCss3, FaHtml5, FaJs, FaReact } from 'react-icons/fa'
 import { SiAdonisjs } from 'react-icons/si'
 import { Header } from '../../components/Header'
-import { TechsContainer, Card } from './styles'
+import { TechsContainer, Card } from '../../styles/techsStyles'
 
 const Techs: NextPage = () => {
   return (
