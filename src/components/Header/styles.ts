@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface NavItemProps {
+  isActive?: boolean;
+}
+
 export const Container = styled.header`
   background: rgba(33,33,33,.7);
   opacity: 1;
@@ -32,36 +36,6 @@ export const Container = styled.header`
     font-weight: bold;
     align-items: center;
     margin-bottom: 0;
-    
-    li {
-      font-size: 1.1rem;
-      margin-right: 3.5rem;
-      list-style: none;
-
-      a{
-        color: var(--text-dark);
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-
-        svg {
-          margin-right: 8px;
-        }
-
-        :hover {
-          color: var(--text-highlight);
-        }
-      }
-    }
-
-    li:last-child {
-      a{
-        background-color: var(--green);
-        color: var(--title);
-        padding: 1rem 2rem;
-        border-radius: 25px;
-      }
-    }
   }
 
   @media(max-width: 990px){
@@ -122,3 +96,33 @@ export const CanvasBody = styled.div`
     }
   }
 `;
+
+export const NavItem = styled.li<NavItemProps>`
+  font-size: 1.1rem;
+  margin-right: 3.5rem;
+  list-style: none;
+
+  a{
+    color: ${({isActive}) => isActive ? 'var(--text-highlight)' : 'var(--text-dark)'};
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    svg {
+      margin-right: 8px;
+    }
+
+    :hover {
+      color: var(--text-highlight);
+    }
+  }
+}
+
+:last-child {
+  a{
+    background-color: var(--green);
+    color: var(--title);
+    padding: 1rem 2rem;
+    border-radius: 25px;
+  }
+`
