@@ -1,10 +1,13 @@
+
+import { useState } from 'react'
+import Markdown from 'markdown-to-jsx';
 import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import { AiFillGithub } from 'react-icons/ai'
-import { FaLocationArrow } from 'react-icons/fa'
+import { FaLocationArrow, FaSearch } from 'react-icons/fa'
 import { Header } from '../../components/Header'
 import { Badge } from '../../components/Badge'
-import { PortfolioContainer, Cards, Card } from '../../styles/portfolioStyles'
+import { PortfolioContainer, Cards, Card, Content, BadgeList, BadgeButton } from '../../styles/portfolioStyles'
 
 interface dataInterface {
   name: string;
@@ -24,8 +27,38 @@ interface Props {
   repos: dataInterface[];
 }
 
+const languages = ['typescript', 'javascript', 'reactjs', 'mobile', 'nodejs' ]
+
 const Portfolio: NextPage<Props> = ({repos}) => {
-  const reposFiltred = repos.filter((repo) => repo.topics.includes('portfolio')).reverse();
+  const [languagesFiltred, setLanguagesFiltred] = useState<string[]>([])
+
+  let reposToRender: dataInterface[];
+
+  if(!languagesFiltred.length){
+    reposToRender = repos
+    .filter((repo) => repo.topics
+    .includes('portfolio'))
+    .reverse()
+  }else {
+    reposToRender = repos
+    .filter((repo) => repo.topics
+    .includes('portfolio'))
+    .filter((repo) => languagesFiltred.every(topic => repo.topics.includes(topic)))
+    .reverse()
+  }
+
+  function handleFilter(language: string){
+    const languageIndex = languagesFiltred.indexOf(language)
+
+    if(languageIndex > -1){
+      const newArray = [...languagesFiltred]
+      newArray.splice(languageIndex, 1);
+
+      setLanguagesFiltred(newArray)
+    }else {
+      setLanguagesFiltred([...languagesFiltred, language])
+    }
+  }
 
   return (
     <div>
@@ -37,41 +70,59 @@ const Portfolio: NextPage<Props> = ({repos}) => {
 
       <Header />
       <main>
-        <PortfolioContainer>
-          <Cards>
-            {reposFiltred.map((repo) => {
-              const date = new Date(repo.pushed_at);
-              const dateString = date.toLocaleDateString("pt-br")
+        <Content>
 
+          <h2>Filtro:</h2>
+          <BadgeList>
+            {languages.map((language) => {
               return (
-                <Card key={repo.name} language={repo.language}>
-                  <div className="title">
-                    <p>Nome: <b>{repo.name}</b></p>
-                    <Badge language={repo.language} />
-                  </div>
-                  
-                  <p className="description">{repo.description || 'Sem descrição'}</p>
-
-                  <div className="footer">
-                    <div className="about">
-                    <div className="image" style={{backgroundImage: `url(${repo.owner.avatar_url})`}} />
-
-                    <div className="date">
-                      <p>{repo.owner.login}</p>
-                      <p>{dateString}</p>
-                    </div>
-                  </div>
-
-                  <div className="icons">
-                    <a href={repo.html_url} target="_blank" rel="noreferrer"><AiFillGithub /></a>
-                    {repo.homepage && <a href={repo.homepage} target="_blank" rel="noreferrer"><FaLocationArrow size={22} /></a>}
-                  </div>
-                </div>
-              </Card>
+                <BadgeButton 
+                  onClick={() => handleFilter(language.toLowerCase())} 
+                  key={language} 
+                  isActive={languagesFiltred.includes(language.toLowerCase())}
+                >
+                  <Badge language={language.toLowerCase()} />
+                </BadgeButton>
               )
             })}
-          </Cards>
-        </PortfolioContainer>
+          </BadgeList>
+
+          <PortfolioContainer>
+            <Cards>
+              {reposToRender.map((repo) => {
+                const date = new Date(repo.pushed_at);
+                const dateString = date.toLocaleDateString("pt-br")
+
+                return (
+                  <Card key={repo.name} language={repo.language}>
+                    <div className="title">
+                      <p>Nome: <b>{repo.name}</b></p>
+                      <Badge language={repo.language} />
+                    </div>
+                    
+                    <p className="description">{repo.description || 'Sem descrição'}</p>
+
+                    <div className="footer">
+                      <div className="about">
+                      <div className="image" style={{backgroundImage: `url(${repo.owner.avatar_url})`}} />
+
+                      <div className="date">
+                        <p>{repo.owner.login}</p>
+                        <p>{dateString}</p>
+                      </div>
+                    </div>
+
+                    <div className="icons">
+                      <a href={repo.html_url} target="_blank" rel="noreferrer"><AiFillGithub /></a>
+                      {repo.homepage && <a href={repo.homepage} target="_blank" rel="noreferrer"><FaLocationArrow size={22} /></a>}
+                    </div>
+                  </div>
+                </Card>
+                )
+              })}
+            </Cards>
+          </PortfolioContainer>
+        </Content>
       </main>
     </div>
   )

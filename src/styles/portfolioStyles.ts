@@ -4,20 +4,50 @@ interface cardProps {
   language: string;
 }
 
+interface badgeButtonProps {
+  isActive?: boolean;
+}
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 140px !important;
+  padding: 100px 4rem;
+
+  h2 {
+    font-size: 16px;
+    color: var(--green);
+  }
+
+  @media(max-width: 890px){
+    padding: 100px 2rem;
+    height: 130vh;
+  }
+`;
+
+export const BadgeList = styled.div`
+  display: flex;
+  margin-bottom: 1rem;
+  gap: 1rem;
+`;
+
+export const BadgeButton = styled.button<badgeButtonProps>`
+  width: 80px;
+  padding: 6px 0;
+  border-radius: 10px;
+  background-color: var(--title);
+  border: 2px solid transparent;
+  border-color: ${({ isActive }) => isActive ? 'var(--blue)' : 'var(--title)'};
+`
+
 export const PortfolioContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   background-color: var(--background);
-  padding-top: 140px !important;
-  width: 100%;
-  padding: 100px 4rem;
-
-  @media(max-width: 890px){
-    padding: 100px 2rem;
-    height: 130vh;
-  }
 `;
 
 export const Cards = styled.div`
@@ -71,9 +101,12 @@ export const Card = styled.div<cardProps>`
     justify-content: space-between;
     align-items: center;
 
-    a {
+    a, button {
+      background: transparent;
+      color: var(--white);
       font-size: 28px;
       margin-right: 10px;
+
     }
   }
   
@@ -92,5 +125,9 @@ export const Card = styled.div<cardProps>`
       background-repeat: no-repeat
     }
   }
+
+    /* .icons {
+      display: flex; */
+
 `;
 
