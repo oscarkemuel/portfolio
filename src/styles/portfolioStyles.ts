@@ -20,15 +20,13 @@ export const Content = styled.div`
     font-size: 16px;
     color: var(--green);
   }
-
-  @media(max-width: 890px){
-    padding: 100px 2rem;
-    height: 130vh;
-  }
 `;
 
 export const BadgeList = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 1rem;
   gap: 1rem;
 `;

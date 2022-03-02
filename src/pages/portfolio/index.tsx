@@ -87,6 +87,8 @@ const Portfolio: NextPage<Props> = ({repos}) => {
             })}
           </BadgeList>
 
+
+          {!reposToRender.length && <h2>Nada para mostrar!</h2>}
           <PortfolioContainer>
             <Cards>
               {reposToRender.map((repo) => {
