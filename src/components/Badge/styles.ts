@@ -11,7 +11,7 @@ export const Container = styled.div<BadgeProps>`
       else if(language === 'nodejs'){return '#90C53F'}
       else if(language === 'mobile'){return '#8DB646'}
 
-      return 'var(--green)'
+      return 'var(--red)'
     }};
   }
 `;

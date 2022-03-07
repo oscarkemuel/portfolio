@@ -9,7 +9,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
       <GlobalStyle />
-      <NextNProgress color="#00FFBB"  />
+      <NextNProgress color="var(--red)"  />
       <Component {...pageProps} />
     </>
   );

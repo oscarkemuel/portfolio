@@ -44,7 +44,7 @@ export const Home = styled.section`
     color: var(--text-dark);
 
     b {
-      color: var(--green);
+      color: var(--red);
     }
   }
 
@@ -85,7 +85,7 @@ export const Card = styled.a.attrs(props => ({target: '_blank'}))<cardProps>`
   }
 
   :hover{
-    border-color: var(--green);
+    border-color: var(--white);
     color: var(--white);
   }
 `;

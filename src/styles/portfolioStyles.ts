@@ -18,7 +18,7 @@ export const Content = styled.div`
 
   h2 {
     font-size: 16px;
-    color: var(--green);
+    color: var(--red);
   }
 `;
 
@@ -66,7 +66,7 @@ export const Card = styled.div<cardProps>`
       return '#EFD81D'
     }
 
-    return 'var(--green)'
+    return 'var(--red)'
   }};
   width: 300px;
   min-height: 300px;
@@ -89,7 +89,7 @@ export const Card = styled.div<cardProps>`
       font-weight: bold;
       
       b{
-        color: var(--green);
+        color: var(--red);
       }
     }
   }

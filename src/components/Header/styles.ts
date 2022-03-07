@@ -21,7 +21,7 @@ export const Container = styled.header`
     margin-right: 20px;
     font-size: 20px;
     font-weight: bold;
-    color: var(--green);
+    color: var(--red);
   }
 
   .bars{
@@ -120,8 +120,8 @@ export const NavItem = styled.li<NavItemProps>`
 
 :last-child {
   a{
-    background-color: var(--green);
-    color: var(--title);
+    background-color: var(--red);
+    color: var(--white);
     padding: 1rem 2rem;
     border-radius: 25px;
   }

@@ -15,7 +15,7 @@ export default createGlobalStyle`
     --background-card: #2B2B2B;
     --text: #FFFFFF;
     --text-dark: #CACCD1;
-    --text-highlight: #00FFFF;
+    --text-highlight: #EFD81D;
     --title: #2E384D;
     --red: #E83F5B;
     --green: #00FFBB;

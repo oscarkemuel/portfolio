@@ -29,7 +29,7 @@ export const ContactContainer = styled.section`
       justify-content: center;
 
       svg {
-        color: var(--green);
+        color: var(--red);
         margin-right: 10px;
       }
     }
@@ -40,7 +40,7 @@ export const ContactContainer = styled.section`
     width: 60%;
 
     label {
-      color: var(--green);
+      color: var(--red);
     }
 
     input, textarea {
