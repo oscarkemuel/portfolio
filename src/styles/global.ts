@@ -72,5 +72,23 @@ export default createGlobalStyle`
   .offcanvas-header {
     background-color: var(--background);
   }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background); 
+
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: #555; 
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-dark); 
+  }
 `;
 
