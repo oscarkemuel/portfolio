@@ -12,7 +12,6 @@ export const Home = styled.section`
   background-color: var(--background-dark);
   padding-top: 140px !important;
   width: 100%;
-  height: 100vh;
   padding: 100px 4rem;
 
   .image {
@@ -58,12 +57,14 @@ export const Home = styled.section`
   .social {
     margin-top: 2rem;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 1rem;
   }
 
   @media(max-width: 890px){
     padding: 90px 2rem;
-    height: 125vh;
   }
 `;
 
