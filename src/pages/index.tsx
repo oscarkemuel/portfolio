@@ -4,7 +4,7 @@ import Head from 'next/head'
 import { Header } from '../components/Header'
 import { Home, Card } from '../styles/homeStyles'
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
-import { BiDownload } from 'react-icons/bi'
+import { GrDocumentUser } from 'react-icons/gr'
 
 interface Props {
   data: {
@@ -52,8 +52,8 @@ const HomePage: NextPage<Props> = ({data}) => {
               <div className="name">Linkedin</div>
             </Card>
 
-            <Card color='var(--red)' href="https://drive.google.com/uc?id=1hKpdiUTU39_Mxr9K7FjlNOBfj_2IFzbn&export=download" download>
-              <BiDownload />
+            <Card color='var(--red)' href="https://drive.google.com/file/d/1hKpdiUTU39_Mxr9K7FjlNOBfj_2IFzbn/view?usp=sharing">
+              <GrDocumentUser />
               <div className="name">Currículo</div>
             </Card>
           </div>
