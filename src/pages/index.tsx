@@ -53,7 +53,7 @@ const HomePage: NextPage<Props> = ({data}) => {
             </Card>
 
             <Card color='var(--red)' href="https://drive.google.com/file/d/1A3IhsdPR3K1u3fuqg3f2bxJysz31Yk1L/view?usp=sharing">
-              <GrDocumentUser />
+              <GrDocumentUser color='#FFFFFF' />
               <div className="name">Currículo</div>
             </Card>
           </div>
