@@ -8,6 +8,10 @@ export const Container = styled.footer`
   justify-content: center;
   padding: 1rem;
 
+  p{
+    color: var(--text-dark);
+  }
+
   b:nth-child(1){
     color: var(--blue);
   }

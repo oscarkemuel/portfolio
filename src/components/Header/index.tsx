@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CanvasBody, Container, NavItem } from './styles';
-import { AiFillHome, AiFillProject } from 'react-icons/ai';
+import { AiOutlineUser, AiFillProject } from 'react-icons/ai';
 import { BsFileCodeFill } from 'react-icons/bs';
 import { MdContactPhone } from 'react-icons/md';
 import { FaBars } from 'react-icons/fa';
@@ -17,9 +17,9 @@ export const Header = () => {
 
   const links = [
     {
-      link: '/',
-      icon: AiFillHome,
-      title: 'Inicio'
+      link: '/about',
+      icon: AiOutlineUser,
+      title: 'Sobre mim'
     },
     {
       link: '/techs',
