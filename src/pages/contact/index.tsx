@@ -43,7 +43,7 @@ const Contact: NextPage = () => {
   }
 
   return (
-    <div>
+    <>
       <Head>
         <title>Oscar Kemuel - Contato</title>
         <meta name="description" content="Oscar Kemuel - Contato" />
@@ -112,7 +112,7 @@ const Contact: NextPage = () => {
           </Form>
         </ContactContainer>
       </main>
-    </div>
+    </>
   )
 }
 

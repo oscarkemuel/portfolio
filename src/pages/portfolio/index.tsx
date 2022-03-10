@@ -61,7 +61,7 @@ const Portfolio: NextPage<Props> = ({repos}) => {
   }
 
   return (
-    <div>
+    <>
       <Head>
         <title>Oscar Kemuel - Portfólio</title>
         <meta name="description" content="Oscar Kemuel - Portfólio" />
@@ -126,7 +126,7 @@ const Portfolio: NextPage<Props> = ({repos}) => {
           </PortfolioContainer>
         </Content>
       </main>
-    </div>
+    </>
   )
 }
 

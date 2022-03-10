@@ -8,7 +8,7 @@ import { TechsContainer, Card } from '../../styles/techsStyles'
 
 const Techs: NextPage = () => {
   return (
-    <div>
+    <>
       <Head>
         <title>Oscar Kemuel - Tecnologias</title>
         <meta name="description" content="Oscar Kemuel - Tecnologias" />
@@ -107,7 +107,7 @@ const Techs: NextPage = () => {
           </Card>
         </TechsContainer>
       </main>
-    </div>
+    </>
   )
 }
 

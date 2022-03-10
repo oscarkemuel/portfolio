@@ -22,7 +22,7 @@ const CV_URL = "https://drive.google.com/file/d/1A3IhsdPR3K1u3fuqg3f2bxJysz31Yk1
 
 const HomePage: NextPage<Props> = ({data}) => {
   return (
-    <div>
+    <>
       <Head>
         <title>Oscar Kemuel - Desenvolvedor Web</title>
         <meta name="description" content="Oscar Kemuel - Web developer" />
@@ -30,6 +30,7 @@ const HomePage: NextPage<Props> = ({data}) => {
       </Head>
 
       <Header />
+      
       <main>
         <Home id='home'>
           <div className="image" style={{backgroundImage: `url(${data.avatar_url})`}} />
@@ -51,7 +52,7 @@ const HomePage: NextPage<Props> = ({data}) => {
           </div>
         </Home>
       </main>
-    </div>
+      </>
   )
 }
 
