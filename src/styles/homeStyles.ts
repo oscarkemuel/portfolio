@@ -9,10 +9,14 @@ export const Home = styled.section`
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  background-color: var(--background-dark);
+  background-color: var(--background);
   padding-top: 140px !important;
+  padding-bottom: 45px;
   width: 100%;
-  padding: 100px 4rem;
+
+  h1{
+    text-align: center;
+  }
 
   .image {
     border-radius: 50%;

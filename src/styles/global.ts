@@ -42,6 +42,13 @@ export default createGlobalStyle`
   body {
     background: var(--background);
     color: var(--text);
+    
+    #__next{
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
   }
 
   body, input, textarea, button{
