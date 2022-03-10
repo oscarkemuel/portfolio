@@ -65,7 +65,11 @@ export const Header = () => {
 
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton style={{color: 'var(--red)'}}>
-          <Offcanvas.Title>Oscar Kemuel</Offcanvas.Title>
+          <Offcanvas.Title>
+            <Link href="/">
+              <a onClick={handleClose}>Oscar Kemuel</a>
+            </Link>
+          </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <CanvasBody>

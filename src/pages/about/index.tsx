@@ -53,10 +53,10 @@ const About: NextPage = () => {
             <h2>Experiências</h2>
 
             <div className="cards">
-              {experiences.map((experience) => {
+              {experiences.map((experience, index) => {
                 return (
                   <ExperienceCard
-                    key={experience.title}
+                    key={String(index)}
                     title={experience.title}
                     company={experience.company}
                     companyUrl={experience.companyUrl}

@@ -55,6 +55,9 @@ export const Container = styled.section`
     .cards {
       margin-top: 1rem;
       display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
       gap: 2rem;
     }
   }

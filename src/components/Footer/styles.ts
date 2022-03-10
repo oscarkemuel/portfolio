@@ -10,13 +10,10 @@ export const Container = styled.footer`
 
   p{
     color: var(--text-dark);
-  }
 
-  b:nth-child(1){
-    color: var(--blue);
-  }
-
-  b:nth-child(2){
-    color: var(--red);
+    a{
+      color: var(--red);
+      text-decoration: none;
+    }
   }
 `;

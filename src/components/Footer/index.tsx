@@ -1,10 +1,10 @@
+import Link from 'next/link';
 import { Container } from './styles';
 
 export const Footer = () => {
   return (
     <Container>
-      <p>Made with <b>{"<3"}</b> by <b>Oscar Kemuel</b></p>
-      {/* <p>© Oscar Kemuel 2022. Todos os direitos reservados.</p> */}
+      <p>Made with <b>{"<3"}</b> by <Link href="/"><a><b>Oscar Kemuel</b></a></Link></p>
     </Container>
   );
 };
