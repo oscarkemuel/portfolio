@@ -4,7 +4,8 @@ import Head from 'next/head'
 import { Header } from '../components/Header'
 import { Home, Card } from '../styles/homeStyles'
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
-import { GrDocumentUser } from 'react-icons/gr'
+import { HiDocumentText } from 'react-icons/hi'
+import { SocialBadge } from '../components/SocialBadge'
 
 interface Props {
   data: {
@@ -15,6 +16,9 @@ interface Props {
     html_url: string;
   }
 }
+
+const LINKEDIN_URL = "https://www.linkedin.com/in/oscar-kemuel/"
+const CV_URL = "https://drive.google.com/file/d/1A3IhsdPR3K1u3fuqg3f2bxJysz31Yk1L/view?usp=sharing"
 
 const HomePage: NextPage<Props> = ({data}) => {
   return (
@@ -41,21 +45,9 @@ const HomePage: NextPage<Props> = ({data}) => {
           </div>
 
           <div className='social'>
-            <Card color='#161B22' href={data.html_url}>
-              <AiFillGithub />
-              <div className="name">Github</div>
-            </Card>
-            
-
-            <Card color='#0A66C2' href="https://www.linkedin.com/in/oscar-kemuel/">
-              <AiFillLinkedin />
-              <div className="name">Linkedin</div>
-            </Card>
-
-            <Card color='var(--red)' href="https://drive.google.com/file/d/1A3IhsdPR3K1u3fuqg3f2bxJysz31Yk1L/view?usp=sharing">
-              <GrDocumentUser color='#FFFFFF' />
-              <div className="name">Currículo</div>
-            </Card>
+            <SocialBadge icon={AiFillGithub} href={data.html_url} color="#161B22" />
+            <SocialBadge icon={AiFillLinkedin} href={LINKEDIN_URL}  color="#0A66C2"/>
+            <SocialBadge icon={HiDocumentText} href={CV_URL}  color="var(--red)" />
           </div>
         </Home>
       </main>
