@@ -18,7 +18,7 @@ interface Props {
 }
 
 const LINKEDIN_URL = "https://www.linkedin.com/in/oscar-kemuel/"
-const CV_URL = "https://drive.google.com/file/d/1A3IhsdPR3K1u3fuqg3f2bxJysz31Yk1L/view?usp=sharing"
+const CV_URL = "https://drive.google.com/file/d/1C0rjv09ksarVadp2F3VBL5uIzLgZV6Rr/view?usp=sharing"
 
 const HomePage: NextPage<Props> = ({data}) => {
   return (
