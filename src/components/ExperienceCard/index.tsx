@@ -6,9 +6,8 @@ export interface BadgeProps {
     title: string;
     company: string;
     time: string;
-    startDate: Date;
-    endDate?: Date;
-    isActive?: boolean;
+    startDate: string;
+    endDate: string;
     locale: string;
     description: string;
     imageUrl: string;
@@ -17,7 +16,7 @@ export interface BadgeProps {
 }
 
 export const ExperienceCard = ({ data }: BadgeProps) => {
-  const { company, description ,locale ,startDate ,time ,title ,isActive, imageUrl, companyUrl } = data;
+  const { company, description ,locale ,startDate ,time ,title ,endDate, imageUrl, companyUrl } = data;
   
   return (
     <Container>
@@ -31,7 +30,7 @@ export const ExperienceCard = ({ data }: BadgeProps) => {
             {" · "}
             {time}
           </p>
-          <p className="date">{startDate.toLocaleDateString('pt-BR')} - {time} · 1 mês</p>
+          <p className="date">{startDate} · {endDate || 'Atual'}</p>
           <p className="location">{locale}</p>
 
           <p className="description">{description}</p>
