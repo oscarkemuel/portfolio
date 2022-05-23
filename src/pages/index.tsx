@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import type { NextPage, GetStaticProps } from 'next'
+import type { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { Header } from '../components/Header'
 import { Home, Card } from '../styles/homeStyles'
@@ -57,7 +57,7 @@ const HomePage: NextPage<Props> = ({data}) => {
 }
 
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const res = await fetch('https://api.github.com/users/oscarkemuel', {
     method: "GET",
     headers: {

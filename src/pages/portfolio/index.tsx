@@ -1,7 +1,7 @@
 
 import { useState } from 'react'
 import Markdown from 'markdown-to-jsx';
-import type { GetStaticProps, NextPage } from 'next'
+import type { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { AiFillGithub } from 'react-icons/ai'
 import { FaLocationArrow, FaSearch } from 'react-icons/fa'
@@ -130,7 +130,7 @@ const Portfolio: NextPage<Props> = ({repos}) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const res = await fetch('https://api.github.com/users/oscarkemuel/repos', {
     method: "GET",
     headers: {
