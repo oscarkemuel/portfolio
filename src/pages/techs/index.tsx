@@ -19,7 +19,7 @@ const Techs: NextPage = () => {
         <TechsContainer>
           {techsData.map((tech) => {
             return (
-              <Card color={tech.cardColor}>
+              <Card color={tech.cardColor} key={tech.title}>
                 <div className="icon">
                   {React.createElement(tech.icon)}
                 </div>
@@ -27,7 +27,7 @@ const Techs: NextPage = () => {
                 <p className="title">{tech.title}</p>
 
                 <ul>
-                  {tech.attributes.map((attribute) => <li>{attribute}</li>)}
+                  {tech.attributes.map((attribute, index) => <li key={`${index}/${attribute}`}>{attribute}</li>)}
                 </ul>
               </Card>
             )

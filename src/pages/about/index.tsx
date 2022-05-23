@@ -31,7 +31,7 @@ const About: NextPage = () => {
             <h2>Experiências</h2>
 
             <div className="cards">
-              {experiences.map((experience, index) => <ExperienceCard data={experience}/>)}
+              {experiences.map((experience, index) => <ExperienceCard data={experience} key={experience.title}/>)}
             </div>
           </div>
         </Container>
