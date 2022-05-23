@@ -2,19 +2,23 @@ import React from 'react';
 import { Container } from './styles';
 
 export interface BadgeProps {
-  title: string;
-  company: string;
-  time: string;
-  startDate: Date;
-  endDate?: Date;
-  isActive?: boolean;
-  locale: string;
-  description: string;
-  imageUrl: string;
-  companyUrl: string;
+  data: {
+    title: string;
+    company: string;
+    time: string;
+    startDate: Date;
+    endDate?: Date;
+    isActive?: boolean;
+    locale: string;
+    description: string;
+    imageUrl: string;
+    companyUrl: string;
+  }
 }
 
-export const ExperienceCard = ({ company, description ,locale ,startDate ,time ,title ,isActive, imageUrl, companyUrl }: BadgeProps) => {
+export const ExperienceCard = ({ data }: BadgeProps) => {
+  const { company, description ,locale ,startDate ,time ,title ,isActive, imageUrl, companyUrl } = data;
+  
   return (
     <Container>
       <div className="content">
