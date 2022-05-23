@@ -2,8 +2,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { ExperienceCard } from '../../components/ExperienceCard'
 import { Header } from '../../components/Header'
+import { experiences } from '../../data/aboutData'
 import { Container } from '../../styles/aboutStyles'
-import { experiences } from './data'
 
 const YEAR_OF_BIRTH = new Date('09/04/2002')
 

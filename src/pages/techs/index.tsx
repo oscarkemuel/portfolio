@@ -2,8 +2,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import React from 'react'
 import { Header } from '../../components/Header'
+import { techsData } from '../../data/techsData'
 import { TechsContainer, Card } from '../../styles/techsStyles'
-import { techsData } from './data'
 
 const Techs: NextPage = () => {
   return (
