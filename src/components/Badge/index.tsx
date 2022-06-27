@@ -6,7 +6,7 @@ import { DiAndroid } from 'react-icons/di';
 import { Container } from './styles';
 
 export interface BadgeProps {
-  language: string;
+  language?: string;
 }
 
 export const Badge = ({ language }: BadgeProps) => {

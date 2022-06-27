@@ -1,64 +1,94 @@
+/* eslint-disable @next/next/no-img-element */
 
 import { useState } from 'react'
-import Markdown from 'markdown-to-jsx';
-import type { NextPage, GetServerSideProps } from 'next'
+import type { NextPage, GetServerSideProps, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { AiFillGithub } from 'react-icons/ai'
 import { FaLocationArrow, FaSearch } from 'react-icons/fa'
 import { Header } from '../../components/Header'
 import { Badge } from '../../components/Badge'
-import { PortfolioContainer, Cards, Card, Content, BadgeList, BadgeButton } from '../../styles/portfolioStyles'
+import { PortfolioContainer, Cards, Card, Content, BadgeList, BadgeButton, CardContent } from '../../styles/portfolioStyles'
+import { gql } from '@apollo/client';
+import { client, ssrCache } from '../../lib/apollo';
+import { useQuery } from 'urql';
 
-interface dataInterface {
-  name: string;
+interface ProjectInterface {
+  id: string;
+  title: string;
   description: string;
-  pushed_at: string;
-  language: string;
-  html_url: string;
+  firstCommit: string;
+  githubSlug: string;
+  url: string;
+  image: {
+    url: string;
+  }
   owner: {
-    login: string;
-    avatar_url: string;
-  }
-  homepage: string;
-  topics: string[];
-}
-
-interface Props {
-  repos: dataInterface[];
-}
-
-const languages = ['typescript', 'javascript', 'reactjs', 'mobile', 'nodejs' ]
-
-const Portfolio: NextPage<Props> = ({repos}) => {
-  const [languagesFiltred, setLanguagesFiltred] = useState<string[]>([])
-
-  let reposToRender: dataInterface[];
-
-  if(!languagesFiltred.length){
-    reposToRender = repos
-    .filter((repo) => repo.topics
-    .includes('portfolio'))
-    .reverse()
-  }else {
-    reposToRender = repos
-    .filter((repo) => repo.topics
-    .includes('portfolio'))
-    .filter((repo) => languagesFiltred.every(topic => repo.topics.includes(topic)))
-    .reverse()
-  }
-
-  function handleFilter(language: string){
-    const languageIndex = languagesFiltred.indexOf(language)
-
-    if(languageIndex > -1){
-      const newArray = [...languagesFiltred]
-      newArray.splice(languageIndex, 1);
-
-      setLanguagesFiltred(newArray)
-    }else {
-      setLanguagesFiltred([...languagesFiltred, language])
+    name: string;
+    githubUrl: string;
+    image: {
+      url: string;
     }
   }
+}
+
+const GET_PROJECTS_QUERY = gql`
+  query GetProjects {
+    projects(orderBy: firstCommit_DESC) {
+      id
+      title
+      description
+      firstCommit
+      githubSlug
+      url
+      image {
+        url
+      }
+      owner {
+        name
+        githubUrl
+        image {
+          url
+        }
+      }
+    }
+  }
+`
+
+// const languages = ['typescript', 'javascript', 'reactjs', 'mobile', 'nodejs' ]
+
+const Portfolio: NextPage = () => {
+  // const [languagesFiltred, setLanguagesFiltred] = useState<string[]>([])
+
+  const [result] = useQuery<{projects: ProjectInterface[]}>({query: GET_PROJECTS_QUERY});
+  const {data: projects} = result;
+
+  // let reposToRender: dataInterface[];
+
+  // if(!languagesFiltred.length){
+  //   reposToRender = repos
+  //   .filter((repo) => repo.topics
+  //   .includes('portfolio'))
+  //   .reverse()
+  // }else {
+  //   reposToRender = repos
+  //   .filter((repo) => repo.topics
+  //   .includes('portfolio'))
+  //   .filter((repo) => languagesFiltred.every(topic => repo.topics.includes(topic)))
+  //   .reverse()
+  // }
+
+  // function handleFilter(language: string){
+  //   const languageIndex = languagesFiltred.indexOf(language)
+
+  //   if(languageIndex > -1){
+  //     const newArray = [...languagesFiltred]
+  //     newArray.splice(languageIndex, 1);
+
+  //     setLanguagesFiltred(newArray)
+  //   }else {
+  //     setLanguagesFiltred([...languagesFiltred, language])
+  //   }
+  // }
 
   return (
     <>
@@ -72,7 +102,7 @@ const Portfolio: NextPage<Props> = ({repos}) => {
       <main>
         <Content>
 
-          <h2>Filtro:</h2>
+          {/* <h2>Filtro:</h2>
           <BadgeList>
             {languages.map((language) => {
               return (
@@ -85,41 +115,50 @@ const Portfolio: NextPage<Props> = ({repos}) => {
                 </BadgeButton>
               )
             })}
-          </BadgeList>
+          </BadgeList> */}
 
 
-          {!reposToRender.length && <h2>Nada para mostrar!</h2>}
           <PortfolioContainer>
             <Cards>
-              {reposToRender.map((repo) => {
-                const date = new Date(repo.pushed_at);
+              {projects?.projects.map((project) => {
+                const date = new Date(project.firstCommit);
                 const dateString = date.toLocaleDateString("pt-br")
 
                 return (
-                  <Card key={repo.name} language={repo.language}>
-                    <div className="title">
-                      <p>Nome: <b>{repo.name}</b></p>
-                      <Badge language={repo.language} />
-                    </div>
-                    
-                    <p className="description">{repo.description || 'Sem descrição'}</p>
+                  <Card key={project.title}>
+                    <img src={project.image.url} alt="" srcSet="" />
 
-                    <div className="footer">
-                      <div className="about">
-                      <div className="image" style={{backgroundImage: `url(${repo.owner.avatar_url})`}} />
+                    <CardContent>
+                      <div className="title">
+                        <p><b>{project.title}</b></p>
+                        <Badge />
+                      </div>
+                      
+                      <p className="description">{project.description || 'Sem descrição'}</p>
 
-                      <div className="date">
-                        <p>{repo.owner.login}</p>
-                        <p>{dateString}</p>
+                      <div className="footer">
+                        <div className="about">
+                          <img src={project.owner.image.url} alt="" />
+
+                          <div className="date">
+                            <p>{project.owner.name}</p>
+                            <p>{dateString}</p>
+                          </div>
+                      </div>
+
+                      <div className="icons">
+                        <a 
+                          href={`https://github.com/${project.owner.githubUrl}/${project.githubSlug}`} 
+                          target="_blank" 
+                          rel="noreferrer"
+                        >
+                          <AiFillGithub />
+                        </a>
+                        {project.url && <a href={project.url} target="_blank" rel="noreferrer"><FaLocationArrow size={22} /></a>}
                       </div>
                     </div>
-
-                    <div className="icons">
-                      <a href={repo.html_url} target="_blank" rel="noreferrer"><AiFillGithub /></a>
-                      {repo.homepage && <a href={repo.homepage} target="_blank" rel="noreferrer"><FaLocationArrow size={22} /></a>}
-                    </div>
-                  </div>
-                </Card>
+                    </CardContent>
+                  </Card>
                 )
               })}
             </Cards>
@@ -130,19 +169,14 @@ const Portfolio: NextPage<Props> = ({repos}) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch('https://api.github.com/users/oscarkemuel/repos', {
-    method: "GET",
-    headers: {
-      Authorization: `token ${process.env.GITHUB_TOKEN}`
-    }
-  })
-  const repos = await res.json()
+export const getStaticProps: GetStaticProps = async () => {
+  await client.query(GET_PROJECTS_QUERY).toPromise();
 
   return {
     props: {
-      repos,
+      urqlState: ssrCache.extractData()
     },
+    revalidate: 60 * 10 // 10min
   }
 }
 

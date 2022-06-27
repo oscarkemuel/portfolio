@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface cardProps {
-  language: string;
+  language?: string;
 }
 
 interface badgeButtonProps {
@@ -55,10 +55,27 @@ export const Cards = styled.div`
   flex-wrap: wrap;
 `;
 
-export const Card = styled.div<cardProps>`
-  background: #2b2b2b;
+export const Card = styled.div`
+  width: 290px;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   box-shadow: 0 1.6rem 2.4rem rgb(0 0 0 / 25%);
-  border-radius: 0.8rem;
+  margin-bottom: 2.7rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+
+  img {
+    width: 100%;
+    height: 200px;
+    border-radius: 0.8rem 0.8rem 0 0;
+  }
+`
+
+export const CardContent = styled.div<cardProps>`
+  background: #2b2b2b;
+  border-radius:  0 0 0.8rem 0.8rem;
   border-bottom: 10px solid ${({language}) => {
     if(language === 'TypeScript') {
       return '#2B72BF'
@@ -68,12 +85,10 @@ export const Card = styled.div<cardProps>`
 
     return 'var(--red)'
   }};
-  width: 300px;
-  min-height: 300px;
+  width: 290px;
+  flex: 1;
   padding: 1rem 1rem 1rem 1.5rem;
-  margin-bottom: 2.7rem;
-  margin-right: 1rem;
-  margin-left: 1rem;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -89,9 +104,21 @@ export const Card = styled.div<cardProps>`
       font-weight: bold;
       
       b{
-        color: var(--red);
+        color: var(--text);
       }
     }
+  }
+
+  .description {
+    margin: 1rem 0;
+    color: var(--text-dark);
+    overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   line-height: 16px;     /* fallback */
+   max-height: 50px;      /* fallback */
+   -webkit-line-clamp: 3; /* number of lines to show */
+   -webkit-box-orient: vertical;
   }
 
   .footer {
@@ -113,7 +140,7 @@ export const Card = styled.div<cardProps>`
     color: var(--text-dark);
     font-size: 12px;
 
-    .image {
+    img {
       margin-top: 5px;
       margin-right: 10px;
       border-radius: 50%;
