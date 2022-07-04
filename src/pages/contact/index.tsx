@@ -5,19 +5,12 @@ import { Header } from '../../components/Header'
 import { ContactContainer } from '../../styles/contactStyles'
 import { IoLocationSharp } from 'react-icons/io5'
 import { GrMail } from 'react-icons/gr'
-import { AiFillPhone } from 'react-icons/ai'
 import { Form } from 'react-bootstrap'
 
 const Contact: NextPage = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [text, setText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  function sendEmail() {
-    const data = {name, email, text}
-
-    if(email && text && name) {
+  function sendEmail(name: string, email: string, text: string) {
       setIsLoading(true);
       
       fetch('/api/contact', {
@@ -26,20 +19,29 @@ const Contact: NextPage = () => {
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({name, email, text})
       }).then((res) => {
         setIsLoading(false);
         if (res.status === 200) {
-          setName('')
-          setEmail('')
-          setText('')
           alert('Email enviado com sucesso!')
         }
       }).catch((err) => {
         setIsLoading(false);
         alert('Ocorreu algum problema ao enviar o email!')
       })
-    }
+  }
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>){
+    event.preventDefault();
+    const elements = event.currentTarget.elements;
+
+    const data = {
+      email: (elements.namedItem('email') as HTMLInputElement).value,
+      name: (elements.namedItem('name') as HTMLInputElement).value,
+      text: (elements.namedItem('text') as HTMLInputElement).value
+    };
+
+    sendEmail(data.name, data.email, data.text);
   }
 
   return (
@@ -63,49 +65,44 @@ const Contact: NextPage = () => {
               <GrMail />
               <p>oscar.kemuel5@gmail.com</p>
             </div>
-
-            <div className="item">
-              <AiFillPhone />
-              <p>84 99136-9568</p>
-            </div>
           </div>
 
-          <Form>
-            <Form.Group className="mb-3" controlId="form.ControlInputName">
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
               <Form.Label>Nome</Form.Label>
               <Form.Control 
+                id="name"
                 type="text" 
                 placeholder='Seu nome'
-                value={name}
-                onChange={e => setName(e.target.value)}
+                required
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="form.ControlInputEmail">
+            <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
               <Form.Control 
-                type="email" 
+                id="email"
+                type="email"
                 placeholder="nome@exemplo.com" 
-                value={email}
-                onChange={e => setEmail(e.target.value)}
+                required
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="form.ControlInputText">
+            <Form.Group className="mb-3">
               <Form.Label>Texto</Form.Label>
               <Form.Control 
+                id="text"
                 as="textarea" 
                 rows={3} 
                 placeholder="Sua ideia"
-                value={text}
-                onChange={e => setText(e.target.value)}
+                required
               />
             </Form.Group>
 
             {
               !isLoading 
               ? 
-              <button type="button" onClick={sendEmail}>Enviar</button> 
+              <button type="submit">Enviar</button> 
               : 
               <button type="button" disabled>Carregando...</button>
             }
