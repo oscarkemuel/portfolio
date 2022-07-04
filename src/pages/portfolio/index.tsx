@@ -54,41 +54,9 @@ const GET_PROJECTS_QUERY = gql`
   }
 `
 
-// const languages = ['typescript', 'javascript', 'reactjs', 'mobile', 'nodejs' ]
-
 const Portfolio: NextPage = () => {
-  // const [languagesFiltred, setLanguagesFiltred] = useState<string[]>([])
-
   const [result] = useQuery<{projects: ProjectInterface[]}>({query: GET_PROJECTS_QUERY});
   const {data: projects} = result;
-
-  // let reposToRender: dataInterface[];
-
-  // if(!languagesFiltred.length){
-  //   reposToRender = repos
-  //   .filter((repo) => repo.topics
-  //   .includes('portfolio'))
-  //   .reverse()
-  // }else {
-  //   reposToRender = repos
-  //   .filter((repo) => repo.topics
-  //   .includes('portfolio'))
-  //   .filter((repo) => languagesFiltred.every(topic => repo.topics.includes(topic)))
-  //   .reverse()
-  // }
-
-  // function handleFilter(language: string){
-  //   const languageIndex = languagesFiltred.indexOf(language)
-
-  //   if(languageIndex > -1){
-  //     const newArray = [...languagesFiltred]
-  //     newArray.splice(languageIndex, 1);
-
-  //     setLanguagesFiltred(newArray)
-  //   }else {
-  //     setLanguagesFiltred([...languagesFiltred, language])
-  //   }
-  // }
 
   return (
     <>
@@ -101,23 +69,6 @@ const Portfolio: NextPage = () => {
       <Header />
       <main>
         <Content>
-
-          {/* <h2>Filtro:</h2>
-          <BadgeList>
-            {languages.map((language) => {
-              return (
-                <BadgeButton 
-                  onClick={() => handleFilter(language.toLowerCase())} 
-                  key={language} 
-                  isActive={languagesFiltred.includes(language.toLowerCase())}
-                >
-                  <Badge language={language.toLowerCase()} />
-                </BadgeButton>
-              )
-            })}
-          </BadgeList> */}
-
-
           <PortfolioContainer>
             <Cards>
               {projects?.projects.map((project) => {
