@@ -48,7 +48,7 @@ export const Container = styled.header`
   }
 
   @media(max-width: 890px){
-    padding: 1rem;
+    padding: 1.8rem;
   }
 `;
 
