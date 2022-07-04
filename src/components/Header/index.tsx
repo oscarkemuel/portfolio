@@ -18,23 +18,19 @@ export const Header = () => {
   const links = [
     {
       link: '/about',
-      icon: AiOutlineUser,
       title: 'Sobre mim'
     },
     {
       link: '/techs',
-      icon: BsFileCodeFill,
       title: 'Tecnologias'
     },
     {
       link: '/portfolio',
-      icon: AiFillProject,
       title: 'Portfólio'
     }
     ,
     {
       link: '/contact',
-      icon: MdContactPhone,
       title: 'Contato'
     }
   ]
@@ -52,7 +48,7 @@ export const Header = () => {
           {links.map((item) => {
             return (
               <NavItem key={item.title} isActive={router.pathname === item.link}>
-                <Link href={item.link}><a>{React.createElement(item.icon)}<p>{item.title}</p></a></Link>
+                <Link href={item.link}><a><p>{item.title}</p></a></Link>
               </NavItem>
             )
           })}
@@ -74,10 +70,16 @@ export const Header = () => {
         <Offcanvas.Body>
           <CanvasBody>
             <ul>
-              {links.map((item) => {
+              {links.map((item, i) => {
                 return (
-                  <NavItem key={item.title} isActive={router.pathname === item.link}>
-                    <Link href={item.link}><a>{React.createElement(item.icon)}<p>{item.title}</p></a></Link>
+                  <NavItem key={`${item.title}-${i}`} isActive={router.pathname === item.link}>
+                    <Link href={item.link}>
+                      <a onClick={handleClose}>
+                        <p>
+                          {item.title}
+                        </p>
+                      </a>
+                    </Link>
                   </NavItem>
                 )
               })}

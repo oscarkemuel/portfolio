@@ -10,9 +10,8 @@ export const TechsContainer = styled.section`
   justify-content: center;
   flex-wrap: wrap;
   background-color: var(--background);
-  padding-top: 140px !important;
   width: 100%;
-  padding: 100px 4rem;
+  padding: 4rem 0;
 
   @media(max-width: 890px){
     padding: 100px 2rem;
@@ -20,7 +19,7 @@ export const TechsContainer = styled.section`
 `;
 
 export const Card = styled.div<cardProps>`
-  background: #2b2b2b;
+  background: var(--background-card);
   box-shadow: 0 1.6rem 2.4rem rgb(0 0 0 / 25%);
   border-radius: 0.8rem;
   border-bottom: 10px solid ${({color}) => color};

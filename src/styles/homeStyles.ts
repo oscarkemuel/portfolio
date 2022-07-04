@@ -10,9 +10,8 @@ export const Home = styled.section`
   align-items: center;
   flex-direction: column;
   background-color: var(--background);
-  padding-top: 140px !important;
-  padding-bottom: 45px;
   width: 100%;
+  padding: 4rem 0;
 
   h1{
     text-align: center;

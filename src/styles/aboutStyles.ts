@@ -5,10 +5,8 @@ export const Container = styled.section`
   align-items: center;
   flex-direction: column;
   background-color: var(--background);
-  padding-top: 140px !important;
   width: 100%;
-  padding: 100px 4rem;
-  margin-bottom: 1rem;
+  padding: 4rem 0;
 
   @media(max-width: 890px){
     padding: 100px 2rem;

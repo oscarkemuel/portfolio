@@ -18,7 +18,6 @@ const About: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
       <main>
         <Container>
           <div className="about">
@@ -31,7 +30,7 @@ const About: NextPage = () => {
             <h2>Experiências</h2>
 
             <div className="cards">
-              {experiences.map((experience, index) => <ExperienceCard data={experience} key={experience.title}/>)}
+              {experiences.map((experience, index) => <ExperienceCard data={experience} key={`${experience.title}-${index}`}/>)}
             </div>
           </div>
         </Container>

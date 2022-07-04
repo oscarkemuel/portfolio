@@ -7,6 +7,7 @@ import { Provider } from "urql";
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import { Footer } from '../components/Footer';
 import { client, ssrCache } from '../lib/apollo';
+import { Header } from '../components/Header';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   if (pageProps.urqlState) {
@@ -17,8 +18,11 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
     <Provider value={client}>
       <GlobalStyle />
       <NextNProgress color="var(--red)"  />
-      <Component {...pageProps} />
-      {/* <Footer /> */}
+      
+      <div>
+        <Header />
+        <Component {...pageProps} />
+      </div>
     </Provider>
   );
 };

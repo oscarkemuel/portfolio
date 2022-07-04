@@ -10,15 +10,15 @@ export default createGlobalStyle`
 
   :root{
     --white: #fff;
-    --background: #262626;
+    --background: #1E1E2A;
     --background-dark: #212121;
-    --background-card: #2B2B2B;
+    --background-card: #242431;
     --text: #FFFFFF;
     --text-dark: #CACCD1;
     --text-highlight: #ff4040;
     --title: #2E384D;
     --red: #E83F5B;
-    --green: #00FFBB;
+    --green: #2AA9E0;
     --blue: #5965E0;
     --blue-dark: #4953B8;
     --blue-twitter: #2AA9E0;

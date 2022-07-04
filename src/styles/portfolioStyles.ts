@@ -8,20 +8,6 @@ interface badgeButtonProps {
   isActive?: boolean;
 }
 
-export const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 140px !important;
-  padding: 100px 4rem;
-
-  h2 {
-    font-size: 16px;
-    color: var(--red);
-  }
-`;
-
 export const BadgeList = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -40,12 +26,13 @@ export const BadgeButton = styled.button<badgeButtonProps>`
   border-color: ${({ isActive }) => isActive ? 'var(--blue)' : 'var(--title)'};
 `
 
-export const PortfolioContainer = styled.section`
+export const PortfolioContainer = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   background-color: var(--background);
+  padding: 4rem 0;
 `;
 
 export const Cards = styled.div`
@@ -74,9 +61,9 @@ export const Card = styled.div`
 `
 
 export const CardContent = styled.div<cardProps>`
-  background: #2b2b2b;
+  background: var(--background-card);
   border-radius:  0 0 0.8rem 0.8rem;
-  border-bottom: 10px solid ${({language}) => {
+  /* border-bottom: 10px solid ${({language}) => {
     if(language === 'TypeScript') {
       return '#2B72BF'
     } else if (language === 'JavaScript'){
@@ -84,7 +71,7 @@ export const CardContent = styled.div<cardProps>`
     }
 
     return 'var(--red)'
-  }};
+  }}; */
   width: 290px;
   flex: 1;
   padding: 1rem 1rem 1rem 1.5rem;

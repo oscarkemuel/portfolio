@@ -7,7 +7,7 @@ import { AiFillGithub } from 'react-icons/ai'
 import { FaLocationArrow, FaSearch } from 'react-icons/fa'
 import { Header } from '../../components/Header'
 import { Badge } from '../../components/Badge'
-import { PortfolioContainer, Cards, Card, Content, BadgeList, BadgeButton, CardContent } from '../../styles/portfolioStyles'
+import { PortfolioContainer, Cards, Card, BadgeList, BadgeButton, CardContent } from '../../styles/portfolioStyles'
 import { gql } from '@apollo/client';
 import { client, ssrCache } from '../../lib/apollo';
 import { useQuery } from 'urql';
@@ -59,64 +59,59 @@ const Portfolio: NextPage = () => {
   const {data: projects} = result;
 
   return (
-    <>
+    <div>
       <Head>
         <title>Oscar Kemuel - Portfólio</title>
         <meta name="description" content="Oscar Kemuel - Portfólio" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
-      <main>
-        <Content>
-          <PortfolioContainer>
-            <Cards>
-              {projects?.projects.map((project) => {
-                const date = new Date(project.firstCommit);
-                const dateString = date.toLocaleDateString("pt-br")
+      <PortfolioContainer>
+        <Cards>
+          {projects?.projects.map((project) => {
+            const date = new Date(project.firstCommit);
+            const dateString = date.toLocaleDateString("pt-br")
 
-                return (
-                  <Card key={project.title}>
-                    <img src={project.image.url} alt="" srcSet="" />
+            return (
+              <Card key={project.title}>
+                <img src={project.image.url} alt="" srcSet="" />
 
-                    <CardContent>
-                      <div className="title">
-                        <p><b>{project.title}</b></p>
-                        <Badge />
+                <CardContent>
+                  <div className="title">
+                    <p><b>{project.title}</b></p>
+                    <Badge />
+                  </div>
+                  
+                  <p className="description">{project.description || 'Sem descrição'}</p>
+
+                  <div className="footer">
+                    <div className="about">
+                      <img src={project.owner.image.url} alt="" />
+
+                      <div className="date">
+                        <p>{project.owner.name}</p>
+                        <p>{dateString}</p>
                       </div>
-                      
-                      <p className="description">{project.description || 'Sem descrição'}</p>
+                  </div>
 
-                      <div className="footer">
-                        <div className="about">
-                          <img src={project.owner.image.url} alt="" />
-
-                          <div className="date">
-                            <p>{project.owner.name}</p>
-                            <p>{dateString}</p>
-                          </div>
-                      </div>
-
-                      <div className="icons">
-                        <a 
-                          href={`https://github.com/${project.owner.githubUrl}/${project.githubSlug}`} 
-                          target="_blank" 
-                          rel="noreferrer"
-                        >
-                          <AiFillGithub />
-                        </a>
-                        {project.url && <a href={project.url} target="_blank" rel="noreferrer"><FaLocationArrow size={22} /></a>}
-                      </div>
-                    </div>
-                    </CardContent>
-                  </Card>
-                )
-              })}
-            </Cards>
-          </PortfolioContainer>
-        </Content>
-      </main>
-    </>
+                  <div className="icons">
+                    <a 
+                      href={`https://github.com/${project.owner.githubUrl}/${project.githubSlug}`} 
+                      target="_blank" 
+                      rel="noreferrer"
+                    >
+                      <AiFillGithub />
+                    </a>
+                    {project.url && <a href={project.url} target="_blank" rel="noreferrer"><FaLocationArrow size={22} /></a>}
+                  </div>
+                </div>
+                </CardContent>
+              </Card>
+            )
+          })}
+        </Cards>
+      </PortfolioContainer>
+    </div>
   )
 }
 

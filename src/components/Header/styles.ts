@@ -5,16 +5,14 @@ interface NavItemProps {
 }
 
 export const Container = styled.header`
-  background: rgba(33,33,33,.7);
+  background: var(--background-card);
   opacity: 1;
-  position: fixed;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 0 4rem;
-  height: 90px;
+  padding: 2rem;
 
   h1{
     margin-bottom: 0;
@@ -35,19 +33,12 @@ export const Container = styled.header`
     display: flex;
     font-weight: bold;
     align-items: center;
+    justify-content: center;
     margin-bottom: 0;
-  }
-
-  @media(max-width: 990px){
-    h1 {
-      display: none;
-    }
+    padding: 0;
   }
 
   @media(max-width: 768px){
-    h1{
-      display: block;
-    }
     nav {
       display: none;
     }
@@ -57,7 +48,7 @@ export const Container = styled.header`
   }
 
   @media(max-width: 890px){
-    padding: 0 2rem;
+    padding: 1rem;
   }
 `;
 
@@ -80,7 +71,7 @@ export const CanvasBody = styled.div`
         align-items: center;
         justify-content: center;
         text-decoration: none;
-        background-color: var(--background-dark);
+        background-color: var(--background-card);
         width: 100%;
         padding: 1rem;
         border-radius: 10px;
@@ -99,7 +90,7 @@ export const CanvasBody = styled.div`
 
 export const NavItem = styled.li<NavItemProps>`
   font-size: 1.1rem;
-  margin-right: 3.5rem;
+  margin: 0 1rem;
   list-style: none;
 
   a{
@@ -116,13 +107,4 @@ export const NavItem = styled.li<NavItemProps>`
       color: var(--text-highlight);
     }
   }
-}
-
-:last-child {
-  a{
-    background-color: var(--red);
-    color: var(--white);
-    padding: 1rem 2rem;
-    border-radius: 25px;
-  }
-`
+`;

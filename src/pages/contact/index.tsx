@@ -52,7 +52,6 @@ const Contact: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
       <main>
         <ContactContainer>
           <div className="location">
