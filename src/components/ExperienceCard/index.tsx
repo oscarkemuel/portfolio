@@ -30,10 +30,15 @@ export const ExperienceCard = ({ data }: { data: ExperienceInterface }) => {
     companyImage,
   } = data;
 
+  const startDateFormatted = new Date(startDate).toLocaleDateString("pt-BR");
+  const endDateFormatted = endDate
+    ? new Date(endDate).toLocaleDateString("pt-BR")
+    : "Atual";
+
   return (
     <Container>
       <div className="content">
-        <img src={companyImage.url} alt=""/>
+        <img src={companyImage.url} alt="" />
 
         <div className="infos">
           <p className="title">{office}</p>
@@ -41,10 +46,11 @@ export const ExperienceCard = ({ data }: { data: ExperienceInterface }) => {
             <a href={companyUrl} target="_blank" rel="noreferrer">
               {company}
             </a>
+            {" · "}
             {type}
           </p>
           <p className="date">
-            {startDate} · {endDate || "Atual"}
+            {startDateFormatted} - {endDateFormatted}
           </p>
           <p className="location">{localization}</p>
 
