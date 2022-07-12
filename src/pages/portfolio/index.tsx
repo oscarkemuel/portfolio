@@ -20,7 +20,7 @@ interface ProjectInterface {
   }
   owner: {
     name: string;
-    githubUrl: string;
+    githubSlug: string;
     image: {
       url: string;
     }
@@ -41,7 +41,7 @@ const GET_PROJECTS_QUERY = gql`
       }
       owner {
         name
-        githubUrl
+        githubSlug
         image {
           url
         }
@@ -91,7 +91,7 @@ const Portfolio: NextPage = () => {
 
                   <div className="icons">
                     <a 
-                      href={`https://github.com/${project.owner.githubUrl}/${project.githubSlug}`} 
+                      href={`https://github.com/${project.owner.githubSlug}/${project.githubSlug}`} 
                       target="_blank" 
                       rel="noreferrer"
                     >
