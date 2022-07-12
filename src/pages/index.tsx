@@ -1,25 +1,47 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
-import type { NextPage, GetServerSideProps } from 'next'
-import Head from 'next/head'
-import { Home } from '../styles/homeStyles'
-import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
-import { HiDocumentText } from 'react-icons/hi'
-import { SocialBadge } from '../components/SocialBadge'
+import type { NextPage, GetStaticProps } from "next";
+import Head from "next/head";
+import { Home } from "../styles/homeStyles";
+import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
+import { HiDocumentText } from "react-icons/hi";
+import { SocialBadge } from "../components/SocialBadge";
+import { gql, useQuery } from "urql";
+import { client, ssrCache } from "../lib/urql";
 
-interface Props {
-  data: {
-    login: string;
-    avatar_url: string;
-    bio: string;
-    name: string;
-    html_url: string;
-  }
+interface OwnerInterface {
+  description: string;
+  linkedinUrl: string;
+  githubUrl: string;
+  cvUrl: string;
+  githubSlug: string;
+  image: {
+    url: string;
+  };
 }
 
-const LINKEDIN_URL = "https://www.linkedin.com/in/oscar-kemuel/"
-const CV_URL = "https://drive.google.com/file/d/1C0rjv09ksarVadp2F3VBL5uIzLgZV6Rr/view?usp=sharing"
+const GET_OWNER_QUERY = gql`
+  query GetOwner {
+    owner(where: { githubSlug: "oscarkemuel" }) {
+      id
+      description
+      image {
+        url
+      }
+      linkedinUrl
+      githubUrl
+      cvUrl
+      githubSlug
+    }
+  }
+`;
 
-const HomePage: NextPage<Props> = ({data}) => {
+const HomePage: NextPage = () => {
+  const [result] = useQuery<{ owner: OwnerInterface }>({
+    query: GET_OWNER_QUERY,
+  });
+  const { data } = result;
+
   return (
     <div>
       <Head>
@@ -29,46 +51,52 @@ const HomePage: NextPage<Props> = ({data}) => {
       </Head>
 
       <main>
-        <Home id='home'>
-          <div className="image" style={{backgroundImage: `url(${data.avatar_url})`}} />
+        <Home id="home">
+          <img src={data?.owner.image.url} alt={data?.owner.githubSlug} />
 
           <div className="presentation">
             <h2>Olá, sou Oscar</h2>
 
-            <p className='description'>
-              Sou <b>desenvolvedor web</b> e minha especialidade é <b>front-end</b> e mobile híbrido
+            <p className="description">
+              Sou <b>desenvolvedor web</b> e minha especialidade é{" "}
+              <b>front-end</b> e mobile híbrido
             </p>
 
-            <p className='bio'>{data.bio}</p>
+            <p className="bio">{data?.owner.description}</p>
           </div>
 
-          <div className='social'>
-            <SocialBadge icon={AiFillGithub} href={data.html_url} color="#161B22" />
-            <SocialBadge icon={AiFillLinkedin} href={LINKEDIN_URL}  color="#0A66C2"/>
-            <SocialBadge icon={HiDocumentText} href={CV_URL}  color="var(--red)" />
+          <div className="social">
+            <SocialBadge
+              icon={AiFillGithub}
+              href={data?.owner.githubUrl!}
+              color="#161B22"
+            />
+            <SocialBadge
+              icon={AiFillLinkedin}
+              href={data?.owner.linkedinUrl!}
+              color="#0A66C2"
+            />
+            <SocialBadge
+              icon={HiDocumentText}
+              href={data?.owner.cvUrl!}
+              color="var(--red)"
+            />
           </div>
         </Home>
       </main>
-      </div>
-  )
-}
+    </div>
+  );
+};
 
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch('https://api.github.com/users/oscarkemuel', {
-    method: "GET",
-    headers: {
-      Authorization: `token ${process.env.GITHUB_TOKEN}`
-    }
-  })
-  const data = await res.json()
+export const getStaticProps: GetStaticProps = async () => {
+  await client.query(GET_OWNER_QUERY).toPromise();
 
   return {
     props: {
-      data,
+      urqlState: ssrCache.extractData(),
     },
-  }
-}
+    revalidate: 60 * 60 * 24, // 24 hours
+  };
+};
 
-
-export default HomePage
+export default HomePage;

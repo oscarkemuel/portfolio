@@ -17,12 +17,10 @@ export const Home = styled.section`
     text-align: center;
   }
 
-  .image {
+  img {
     border-radius: 50%;
-    min-height: 150px;
+    height: 150px;
     width: 150px;
-    background-size: cover;
-    background-repeat: no-repeat
   }
 
   .presentation{

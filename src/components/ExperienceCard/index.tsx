@@ -30,8 +30,6 @@ export const ExperienceCard = ({ data }: { data: ExperienceInterface }) => {
     companyImage,
   } = data;
 
-  console.log(data)
-
   return (
     <Container>
       <div className="content">
