@@ -1,16 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { useState } from 'react'
-import type { NextPage, GetServerSideProps, GetStaticProps } from 'next'
+import type { NextPage, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { AiFillGithub } from 'react-icons/ai'
-import { FaLocationArrow, FaSearch } from 'react-icons/fa'
-import { Header } from '../../components/Header'
-import { Badge } from '../../components/Badge'
-import { PortfolioContainer, Cards, Card, BadgeList, BadgeButton, CardContent } from '../../styles/portfolioStyles'
-import { gql } from '@apollo/client';
-import { client, ssrCache } from '../../lib/apollo';
-import { useQuery } from 'urql';
+import { FaLocationArrow } from 'react-icons/fa'
+import { PortfolioContainer, Cards, Card, CardContent } from '../../styles/portfolioStyles'
+import { client, ssrCache } from '../../lib/urql';
+import { gql, useQuery } from 'urql';
 
 interface ProjectInterface {
   id: string;
@@ -79,7 +75,6 @@ const Portfolio: NextPage = () => {
                 <CardContent>
                   <div className="title">
                     <p><b>{project.title}</b></p>
-                    <Badge />
                   </div>
                   
                   <p className="description">{project.description || 'Sem descrição'}</p>
@@ -122,7 +117,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       urqlState: ssrCache.extractData()
     },
-    revalidate: 60 * 10 // 10min
+    revalidate: 60 * 60 // 1 hour
   }
 }
 

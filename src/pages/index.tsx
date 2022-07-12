@@ -1,8 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import type { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
-import { Header } from '../components/Header'
-import { Home, Card } from '../styles/homeStyles'
+import { Home } from '../styles/homeStyles'
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
 import { HiDocumentText } from 'react-icons/hi'
 import { SocialBadge } from '../components/SocialBadge'

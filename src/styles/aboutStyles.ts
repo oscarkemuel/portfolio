@@ -2,18 +2,20 @@ import styled from 'styled-components';
 
 export const Container = styled.section`
   display: flex;
-  align-items: center;
-  flex-direction: column;
   background-color: var(--background);
   width: 100%;
-  padding: 4rem 0;
+  padding: 4rem 4rem 0 4rem;
+
+  &:last-child {
+    padding-top: 0;
+    padding-bottom: 4rem;
+  }
 
   @media(max-width: 890px){
-    padding: 100px 2rem;
+    padding: 2rem;
   }
 
   h2 {
-    text-align: center;
     max-width: 140px;
     font-size: 22px;
     font-weight: bold;
@@ -26,13 +28,10 @@ export const Container = styled.section`
   .about {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
     p {
       margin-top: 10px;
       max-width: 800px;
-      text-align: center;
       color: var(--text-dark);
 
       b {
@@ -46,11 +45,10 @@ export const Container = styled.section`
   .experience {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     flex-wrap: wrap;
     
     .cards {
+      max-width: 600px;
       margin-top: 1rem;
       display: flex;
       align-items: center;

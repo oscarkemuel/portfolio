@@ -1,5 +1,7 @@
-import React from 'react';
-import { Container } from './styles';
+/* eslint-disable @next/next/no-img-element */
+import React from "react";
+import { ExperienceInterface } from "../../pages/about";
+import { Container } from "./styles";
 
 export interface BadgeProps {
   data: {
@@ -12,26 +14,41 @@ export interface BadgeProps {
     description: string;
     imageUrl: string;
     companyUrl: string;
-  }
+  };
 }
 
-export const ExperienceCard = ({ data }: BadgeProps) => {
-  const { company, description ,locale ,startDate ,time ,title ,endDate, imageUrl, companyUrl } = data;
-  
+export const ExperienceCard = ({ data }: { data: ExperienceInterface }) => {
+  const {
+    company,
+    description,
+    localization,
+    startDate,
+    office,
+    endDate,
+    type,
+    companyUrl,
+    companyImage,
+  } = data;
+
+  console.log(data)
+
   return (
     <Container>
       <div className="content">
-        <div className="image" style={{backgroundImage: `url(${imageUrl})`}} />
+        <img src={companyImage.url} alt=""/>
 
         <div className="infos">
-          <p className="title">{title}</p>
+          <p className="title">{office}</p>
           <p className="company">
-            <a href={companyUrl} target="_blank" rel="noreferrer">{company}</a>
-            {" · "}
-            {time}
+            <a href={companyUrl} target="_blank" rel="noreferrer">
+              {company}
+            </a>
+            {type}
           </p>
-          <p className="date">{startDate} · {endDate || 'Atual'}</p>
-          <p className="location">{locale}</p>
+          <p className="date">
+            {startDate} · {endDate || "Atual"}
+          </p>
+          <p className="location">{localization}</p>
 
           <p className="description">{description}</p>
         </div>

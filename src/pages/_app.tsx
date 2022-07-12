@@ -6,7 +6,7 @@ import { Provider } from "urql";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import { Footer } from '../components/Footer';
-import { client, ssrCache } from '../lib/apollo';
+import { client, ssrCache } from '../lib/urql';
 import { Header } from '../components/Header';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
